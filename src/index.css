@@ -1,0 +1,22 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Lora:wght@500&display=swap'); */
+
+
+:root{
+
+  --main-font:'Lora', serif;
+  --bg-color:darkblue;
+}
+
+
+body {
+  font-family: var(--main-font);
+  margin: 0;
+  background-color: var(--bg-color);
+  background-color: darkblue;
+
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
