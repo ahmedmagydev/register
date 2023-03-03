@@ -84,7 +84,7 @@ function validatereg(){
     last_name:Joi.string().min(3).max(10).required(),
     email:Joi.string().pattern(/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/).required(),
     password:Joi.string().pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/).required(),
-    confirm_password:Joi.any().equal(Joi.ref('password')).required(),
+    confirm_password:Joi.string().equal(Joi.ref('password')).required(),
     phone:Joi.string().pattern(/^[0-9]{14}$/).required(),
     comunity:Joi.string().min(3).max(15).required(),
     age:Joi.date().required(),
@@ -97,6 +97,7 @@ function validatereg(){
     if(user.password!==user.confirm_password){
         return {error:{details:[{message:'Password and Confirm Password do not match'}]}};
     }
+    
 
 }
 
@@ -114,10 +115,11 @@ function validatereg(){
   return (<>
 
 
-{errorslist.map((err,index)=>  <div key={index} className="alert alert-danger my-2">{err.message}</div>  )}
 <div className='container text-center item-center  text-white fs-3 '>
 <div className="position-relative ">
 <div className="position-absolute top-50 start-50">
+{errorslist.map((err,index)=>  <div key={index} className="alert alert-danger my-2">{err.message}</div>  )}
+
 <form className="row bg-primary" onSubmit={submetuser}> 
 <div className="col-12 " >
 <div className="row">
@@ -136,10 +138,11 @@ function validatereg(){
 </div>
 <label htmlFor="email">email : </label>
 <input onChange={getUserData} type="email" name="email" className='form-control my-input my-2' id='email' placeholder="Email" />
-<label htmlFor="passowrd">passowrd : </label>
-<input onChange={getUserData} type="password" name="passowrd" className='form-control my-input my-2' id='passowrd' placeholder="password"/>
+<label htmlFor="password">password : </label>
+<input onChange={getUserData} type="password" name="password" className='form-control my-input my-2'  placeholder="password"/>
 <label htmlFor="confirm_password">confirm password : </label>
 <input onChange={getUserData} type="password" name="confirm_password" className='form-control my-input my-2' id='confirm_password' placeholder="confirm password" />
+<span>{errorslist.message}</span>
 <label htmlFor="age">age : </label>
 <input onChange={getUserData} type="date" name="age" className='form-control my-input my-2' id='age' />
 <label htmlFor="phone">phone : </label>
